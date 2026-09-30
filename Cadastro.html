@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - ONG Ação Transformadora</title>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="projetos.html">Projetos</a></li>
+                <li><a href="cadastro.html">Cadastro / Envolva-se</a></li>
+            </ul>
+        </nav>
+        <h1>Formulário de Registo e Engajamento</h1>
+    </header>
+
+    <main>
+        <form action="/sucesso" method="POST">
+            
+            <fieldset>
+                <legend>Dados Pessoais</legend>
+
+                <p>
+                    <label for="nome">Nome Completo:</label><br>
+                    <input type="text" id="nome" name="nome" required minlength="3" placeholder="Digite seu nome completo">
+                </p>
+
+                <p>
+                    <label for="email">E-mail:</label><br>
+                    <input type="email" id="email" name="email" required placeholder="usuario@dominio.com">
+                </p>
+
+                <p>
+                    <label for="cpf">CPF:</label><br>
+                    <input type="text" id="cpf" name="cpf" required pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" placeholder="000.000.000-00" maxlength="14" title="Digite o CPF no formato 000.000.000-00">
+                </p>
+
+                <p>
+                    <label for="telefone">Telefone / WhatsApp:</label><br>
+                    <input type="tel" id="telefone" name="telefone" required pattern="\(\d{2}\)\s?\d{4,5}-\d{4}" placeholder="(11) 99999-9999" maxlength="15" title="Digite o telefone no formato (11) 99999-9999">
+                </p>
+
+                <p>
+                    <label for="data_nascimento">Data de Nascimento:</label><br>
+                    <input type="date" id="data_nascimento" name="data_nascimento" required>
+                </p>
+            </fieldset>
+
+            <fieldset>
+                <legend>Endereço e Localização</legend>
+
+                <p>
+                    <label for="cep">CEP:</label><br>
+                    <input type="text" id="cep" name="cep" required pattern="\d{5}-\d{3}" placeholder="00000-000" maxlength="9" title="Digite o CEP no formato 00000-000">
+                </p>
+
+                <p>
+                    <label for="endereco">Endereço / Logradouro:</label><br>
+                    <input type="text" id="endereco" name="endereco" required placeholder="Rua, Avenida, Número">
+                </p>
+
+                <p>
+                    <label for="cidade">Cidade:</label><br>
+                    <input type="text" id="cidade" name="cidade" required>
+                </p>
+
+                <p>
+                    <label for="estado">Estado (UF):</label><br>
+                    <select id="estado" name="estado" required>
+                        <option value="">Selecione...</option>
+                        <option value="SP">São Paulo</option>
+                        <option value="RJ">Rio de Janeiro</option>
+                        <option value="MG">Minas Gerais</option>
+                        <!-- Adicione mais estados conforme necessário -->
+                    </select>
+                </p>
+            </fieldset>
+
+            <fieldset>
+                <legend>Perfil de Apoio</legend>
+
+                <p>Como pretende colaborar?</p>
+                <p>
+                    <input type="checkbox" id="voluntario" name="interesse[]" value="voluntariado">
+                    <label for="voluntario">Trabalho Voluntário</label><br>
+
+                    <input type="checkbox" id="doador" name="interesse[]" value="doacao">
+                    <label for="doador">Doações Financeiras / Material</label>
+                </p>
+            </fieldset>
+
+            <p>
+                <button type="submit">Enviar Registo</button>
+                <button type="reset">Limpar Campos</button>
+            </p>
+
+        </form>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 ONG Ação Transformadora. Todos os direitos reservados.</p>
+    </footer>
+
+</body>
+</html>
