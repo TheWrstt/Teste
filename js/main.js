@@ -19,31 +19,42 @@ const projetosData = [
   }
 ];
 
+const htmlInicio = `
+  <h1>Início</h1>
+  <p>Bem-vindo ao Portal da ONG. Juntos transformamos vidas!</p>
+`;
+
+const htmlProjetos = `
+  <h1>Projetos Ativos</h1>
+  <p>Conheça as nossas causas e saiba como ajudar:</p>
+  <div id="lista-projetos" class="grid-projetos"></div>
+`;
+
+const htmlCadastro = `
+  <h1>Cadastro / Envolva-se</h1>
+  <form id="form-cadastro">
+    <div class="campo">
+      <label for="nome">Nome Completo:</label>
+      <input type="text" id="nome" required placeholder="Digite o seu nome">
+    </div>
+    <div class="campo">
+      <label for="email">E-mail:</label>
+      <input type="email" id="email" required placeholder="seu@email.com">
+    </div>
+    <button type="submit" class="btn">Enviar Cadastro</button>
+  </form>
+`;
+
+// Mapeamento abrangendo caminhos locais e do GitHub Pages (/Teste/...)
 const routes = {
-  '/index.html': `
-    <h1>Início</h1>
-    <p>Bem-vindo ao Portal da ONG. Juntos transformamos vidas!</p>
-  `,
-  '/projetos.html': `
-    <h1>Projetos Ativos</h1>
-    <p>Conheça as nossas causas e saiba como ajudar:</p>
-    <div id="lista-projetos" class="grid-projetos"></div>
-  `,
-  '/cadastro.html': `
-    <h1>Cadastro / Envolva-se</h1>
-    <form id="form-cadastro">
-      <div class="campo">
-        <label for="nome">Nome Completo:</label>
-        <input type="text" id="nome" required placeholder="Digite o seu nome">
-      </div>
-      <div class="campo">
-        <label for="email">E-mail:</label>
-        <input type="email" id="email" required placeholder="seu@email.com">
-      </div>
-      <button type="submit" class="btn">Enviar Cadastro</button>
-    </form>
-  `,
-  '/': `<h1>Início</h1><p>Bem-vindo ao Portal da ONG. Juntos transformamos vidas!</p>`
+  '/': htmlInicio,
+  '/index.html': htmlInicio,
+  '/Teste/': htmlInicio,
+  '/Teste/index.html': htmlInicio,
+  '/projetos.html': htmlProjetos,
+  '/Teste/projetos.html': htmlProjetos,
+  '/cadastro.html': htmlCadastro,
+  '/Teste/cadastro.html': htmlCadastro
 };
 
 // ==========================================
@@ -58,10 +69,11 @@ function renderContent(path) {
   const appDiv = document.getElementById('app');
   if (!appDiv) return;
 
+  // Renderiza o conteúdo da rota ou a mensagem 404
   appDiv.innerHTML = routes[path] || '<h1>404</h1><p>Página não encontrada.</p>';
 
-  // Se for a rota de projetos, gera os cartões dinamicamente via Template Literals
-  if (path === '/projetos.html' || path.endsWith('/projetos.html')) {
+  // Se for a rota de projetos, gera os cartões dinamicamente
+  if (path.includes('projetos.html')) {
     renderizarProjetos();
   }
 }
@@ -117,7 +129,6 @@ document.addEventListener('submit', (e) => {
       return;
     }
 
-    // Salva os dados no LocalStorage
     salvarNoLocalStorage({
       nome: nomeInput.value.trim(),
       email: emailInput.value.trim(),
@@ -134,7 +145,11 @@ window.addEventListener('popstate', () => {
   renderContent(window.location.pathname);
 });
 
-// Helper de notificação usando a biblioteca SweetAlert2 se disponível, ou alert nativo
+// Inicialização automática do conteúdo ao carregar a página
+window.addEventListener('DOMContentLoaded', () => {
+  renderContent(window.location.pathname);
+});
+
 function exibirAlerta(titulo, texto, icone) {
   if (typeof Swal !== 'undefined') {
     Swal.fire({ title: titulo, text: texto, icon: icone });
