@@ -11,81 +11,72 @@
         <h1>ONG Esperança Viva</h1>
         <nav>
             <ul>
-                <li><a href="index.html">Início</a></li>
-                <li><a href="projetos.html">Projetos</a></li>
-                <li><a href="cadastro.html">Cadastro / Envolva-se</a></li>
+                <li><a href="index.html" data-link>Início</a></li>
+                <li><a href="projetos.html" data-link>Projetos</a></li>
+                <li><a href="cadastro.html" data-link>Cadastro / Envolva-se</a></li>
             </ul>
-  <a href="index.html" data-link>Início</a>
-  <a href="projetos.html" data-link>Projetos</a>
-  <a href="cadastro.html" data-link>Cadastro</a>
         </nav>
     </header>
-<!-- Seção Institucional / Apresentação -->
-<main>
-  <section id="sobre">
-    <h2>Sobre a Nossa Organização</h2>
-    <p>
-      Atuamos no fortalecimento comunitário e no apoio a famílias em situação de vulnerabilidade, 
-      promovendo ações educativas, culturais e de inclusão social.
-    </p>
-    <img 
-      src="assets/img/voluntarios-acao.jpg" 
-      alt="Grupo de voluntários sorrindo enquanto fazem boas ações para a comunidade" 
-      width="600"
-      height="400"
-      loading="lazy">
-  </section>
 
-  <section id="causas">
-    <h2>Nossas Causas</h2>
-    <article>
-      <h3>Educação para Todos</h3>
-      <p>Apoio escolar e oficinas de tecnologia para jovens e crianças.</p>
-      <img
-        src="assets/img/educacao.jpg"
-        alt="Professora voluntária a ensinar crianças em sala de aula"
-        width="600"
-        height="400"
-        loading="lazy">
-    </article>
-    <article>
-      <h3>Combate à Fome</h3>
-      <p>Arrecadação e distribuição mensal de cestas básicas e refeições.</p>
-      <img
-        src="assets/img/combate-fome.jpg"
-        alt="Voluntários a organizar cestas básicas de alimentos"
-        width="600"
-        height="400"
-        loading="lazy">
-    </article>
-  </section>
-
-  <!-- Seção de Contato -->
-  <section id="contato">
-    <h2>Entre em Contato</h2>
-    <p>Quer colaborar, fazer uma doação ou tirar dúvidas? Fale conosco!</p>
-    
-    <ul>
-      <li><strong>E-mail:</strong> contato@ongexemplo.org.br</li>
-      <li><strong>Telefone / WhatsApp:</strong> (11) 99999-8888</li>
-      <li><strong>Endereço:</strong> Rua da Solidariedade, 123 - São Paulo, SP</li>
-    </ul>
-
-    <a href="https://wa.me/5511999998888" target="_blank" rel="noopener noreferrer">
-      Falar no WhatsApp
-  </section>
+    <!-- Contêiner Único para Renderização Dinâmica da SPA -->
     <main id="app">
-</main>
+        <!-- Seção Institucional / Apresentação -->
+        <section id="sobre">
+            <h2>Sobre a Nossa Organização</h2>
+            <p>
+                Atuamos no fortalecimento comunitário e no apoio a famílias em situação de vulnerabilidade, 
+                promovendo ações educativas, culturais e de inclusão social.
+            </p>
+            <img 
+                src="assets/img/voluntarios-acao.jpg" 
+                alt="Grupo de voluntários sorrindo enquanto fazem boas ações para a comunidade" 
+                width="600"
+                height="400"
+                loading="lazy">
+        </section>
 
-    <!-- Exemplo de Alerta e Badge no topo da secção -->
-<div class="alert alert-success">
-  <span class="badge badge-success">Sucesso</span> O seu cadastro foi realizado com sucesso!
-</div>
+        <section id="causas">
+            <h2>Nossas Causas</h2>
+            <article>
+                <h3>Educação para Todos</h3>
+                <p>Apoio escolar e oficinas de tecnologia para jovens e crianças.</p>
+                <img
+                    src="assets/img/educacao.jpg"
+                    alt="Professora voluntária a ensinar crianças em sala de aula"
+                    width="600"
+                    height="400"
+                    loading="lazy">
+            </article>
+            <article>
+                <h3>Combate à Fome</h3>
+                <p>Arrecadação e distribuição mensal de cestas básicas e refeições.</p>
+                <img
+                    src="assets/img/combate-fome.jpg"
+                    alt="Voluntários a organizar cestas básicas de alimentos"
+                    width="600"
+                    height="400"
+                    loading="lazy">
+            </article>
+        </section>
 
-<!-- Exemplo de Toast no fundo da página -->
-<div class="toast">
-  <span class="badge badge-warning">Aviso</span> Formulário enviado com sucesso!
-</div>
+        <!-- Seção de Contato -->
+        <section id="contato">
+            <h2>Entre em Contato</h2>
+            <p>Quer colaborar, fazer uma doação ou tirar dúvidas? Fale conosco!</p>
+            
+            <ul>
+                <li><strong>E-mail:</strong> contato@ongexemplo.org.br</li>
+                <li><strong>Telefone / WhatsApp:</strong> (11) 99999-8888</li>
+                <li><strong>Endereço:</strong> Rua da Solidariedade, 123 - São Paulo, SP</li>
+            </ul>
+
+            <a href="https://wa.me/5511999998888" target="_blank" rel="noopener noreferrer">Falar no WhatsApp</a>
+        </section>
+    </main>
+
+    <!-- Importação da biblioteca externa SweetAlert2 via CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Script principal em JavaScript -->
     <script src="js/main.js"></script>
 </body>
 </html>
