@@ -1,0 +1,41 @@
+/* ==========================================
+   COMPONENTES DE FEEDBACK (BADGES, ALERTS, TOAST)
+   ========================================== */
+
+/* Badges (Etiquetas) */
+.badge {
+  display: inline-block;
+  padding: 0.25rem 0.6rem;
+  font-size: var(--font-size-xs);
+  font-weight: bold;
+  border-radius: 12px;
+  color: #ffffff;
+}
+.badge-success { background-color: #2e7d32; }
+.badge-warning { background-color: #e65100; }
+
+/* Alerts (Caixas de Alerta) */
+.alert {
+  padding: var(--space-sm);
+  border-radius: 4px;
+  margin-bottom: var(--space-md);
+  font-size: var(--font-size-sm);
+}
+.alert-success {
+  background-color: #e8f5e9;
+  color: #1b5e20;
+  border: 1px solid #a5d6a7;
+}
+
+/* Toast (Notificação Flutuante) */
+.toast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: var(--color-neutral-dark);
+  color: #ffffff;
+  padding: var(--space-sm) var(--space-md);
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  z-index: 1000;
+}
