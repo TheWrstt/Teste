@@ -1,8 +1,142 @@
 /* ==========================================
-   COMPONENTES DE FEEDBACK (BADGES, ALERTS, TOAST)
+   1. VARIÁVEIS GLOBAIS E RESET
    ========================================== */
+:root {
+  --primary-color: #2c3e50;
+  --secondary-color: #27ae60;
+  --accent-color: #e74c3c;
+  --bg-color: #f8f9fa;
+  --card-bg: #ffffff;
+  --text-color: #333333;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 2rem;
+}
 
-/* Badges (Etiquetas) */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.6;
+  padding: var(--space-md);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ==========================================
+   2. CABEÇALHO E NAVEGAÇÃO
+   ========================================== */
+header {
+  background-color: var(--primary-color);
+  color: #ffffff;
+  padding: var(--space-md) var(--space-lg);
+  border-radius: 8px;
+  margin-bottom: var(--space-lg);
+}
+
+header h1 {
+  margin-bottom: var(--space-sm);
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: var(--space-md);
+}
+
+nav a {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+/* ==========================================
+   3. RENDERIZAÇÃO DA SPA (#app)
+   ========================================== */
+#app {
+  background: var(--card-bg);
+  padding: var(--space-lg);
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+#app h1 {
+  color: var(--primary-color);
+  margin-bottom: var(--space-md);
+}
+
+/* ==========================================
+   4. GRID DE PROJETOS E CARDS
+   ========================================== */
+.grid-projetos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-md);
+  margin-top: var(--space-md);
+}
+
+.card-projeto {
+  background-color: var(--bg-color);
+  padding: var(--space-md);
+  border-radius: 8px;
+  border-left: 4px solid var(--secondary-color);
+}
+
+.card-projeto h3 {
+  margin: var(--space-sm) 0;
+}
+
+/* ==========================================
+   5. FORMULÁRIO DE CADASTRO
+   ========================================== */
+#form-cadastro {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  max-width: 500px;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.campo input {
+  padding: var(--space-sm);
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.btn {
+  background-color: var(--secondary-color);
+  color: #ffffff;
+  border: none;
+  padding: var(--space-sm) var(--space-md);
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+/* ==========================================
+   6. COMPONENTES DE FEEDBACK
+   ========================================== */
 .badge {
   display: inline-block;
   padding: 0.25rem 0.6rem;
@@ -10,11 +144,11 @@
   font-weight: bold;
   border-radius: 12px;
   color: #ffffff;
+  background-color: var(--primary-color);
 }
 .badge-success { background-color: #2e7d32; }
 .badge-warning { background-color: #e65100; }
 
-/* Alerts (Caixas de Alerta) */
 .alert {
   padding: var(--space-sm);
   border-radius: 4px;
@@ -27,13 +161,12 @@
   border: 1px solid #a5d6a7;
 }
 
-/* Toast (Notificação Flutuante) */
 .toast {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background-color: #1a1a1a; /* Fundo escuro para dar contraste */
-  color: #ffffff;            /* Texto branco bem visível */
+  background-color: #1a1a1a;
+  color: #ffffff;
   padding: 0.75rem 1.25rem;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.25);
