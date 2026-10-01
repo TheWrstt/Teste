@@ -45,18 +45,6 @@ const htmlCadastro = `
   </form>
 `;
 
-// Mapeamento abrangendo caminhos locais e do GitHub Pages (/Teste/...)
-const routes = {
-  '/': htmlInicio,
-  '/index.html': htmlInicio,
-  '/Teste/': htmlInicio,
-  '/Teste/index.html': htmlInicio,
-  '/projetos.html': htmlProjetos,
-  '/Teste/projetos.html': htmlProjetos,
-  '/cadastro.html': htmlCadastro,
-  '/Teste/cadastro.html': htmlCadastro
-};
-
 // ==========================================
 // 2. SISTEMA DE ROTAS E RENDERIZAÇÃO
 // ==========================================
@@ -69,12 +57,19 @@ function renderContent(path) {
   const appDiv = document.getElementById('app');
   if (!appDiv) return;
 
-  // Renderiza o conteúdo da rota ou a mensagem 404
-  appDiv.innerHTML = routes[path] || '<h1>404</h1><p>Página não encontrada.</p>';
+  // Normaliza o caminho removendo o nome do repositório /Teste se existir
+  let cleanPath = path.replace('/Teste', '');
 
-  // Se for a rota de projetos, gera os cartões dinamicamente
-  if (path.includes('projetos.html')) {
+  // Trata caminhos vazios ou raízes como início
+  if (cleanPath === '' || cleanPath === '/' || cleanPath === '/index.html') {
+    appDiv.innerHTML = htmlInicio;
+  } else if (cleanPath.includes('projetos')) {
+    appDiv.innerHTML = htmlProjetos;
     renderizarProjetos();
+  } else if (cleanPath.includes('cadastro')) {
+    appDiv.innerHTML = htmlCadastro;
+  } else {
+    appDiv.innerHTML = '<h1>404</h1><p>Página não encontrada.</p>';
   }
 }
 
@@ -140,12 +135,10 @@ document.addEventListener('submit', (e) => {
   }
 });
 
-// Suporte para navegação pelas setas do navegador (voltar/avançar)
 window.addEventListener('popstate', () => {
   renderContent(window.location.pathname);
 });
 
-// Inicialização automática do conteúdo ao carregar a página
 window.addEventListener('DOMContentLoaded', () => {
   renderContent(window.location.pathname);
 });
