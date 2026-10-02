@@ -20,19 +20,19 @@ const projetosData = [
     titulo: 'Educação para Todos',
     descricao: 'Aulas de reforço escolar, alfabetização e apoio pedagógico contínuo para crianças e adolescentes em situação de vulnerabilidade social.',
     categoria: 'Educação',
-    imagem: 'voluntarios-acao.jpg'
+    imagem: 'assets/img/educacao.jpg' // Usando a imagem de educação
   },
   {
     titulo: 'Alimentando Esperanças',
     descricao: 'Distribuição diária de refeições nutritivas e cestas básicas mensais para famílias cadastradas na comunidade.',
     categoria: 'Ação Social',
-    imagem: 'combate-fome.jpg'
+    imagem: 'assets/img/combate-fome.jpg'
   },
   {
     titulo: 'Verde Urbano',
     descricao: 'Criação de hortas comunitárias, oficinas de plantio urbano e ações de consciencialização e sustentabilidade ambiental.',
     categoria: 'Meio Ambiente',
-    imagem: 'voluntarios-acao.jpg'
+    imagem: 'assets/img/voluntarios-acao.jpg'
   }
 ];
 
