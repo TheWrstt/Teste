@@ -94,6 +94,14 @@ nav a:hover {
   border-left: 4px solid var(--secondary-color);
 }
 
+.card-projeto img.img-projeto {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-bottom: var(--space-sm);
+}
+
 .card-projeto h3 {
   margin: var(--space-sm) 0;
 }

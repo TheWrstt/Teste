@@ -1,21 +1,24 @@
 // ==========================================
-// 1. DADOS E Mapeamento de Rotas (SPA)
+// 1. DADOS E MAPEAMENTO DE ROTAS (SPA)
 // ==========================================
 const projetosData = [
   {
     titulo: 'Educação para Todos',
     descricao: 'Aulas de reforço escolar e alfabetização para crianças em situação de vulnerabilidade.',
-    categoria: 'Educação'
+    categoria: 'Educação',
+    imagem: 'voluntarios-acao.jpg'
   },
   {
     titulo: 'Alimentando Esperanças',
     descricao: 'Distribuição de refeições diárias e cestas básicas para famílias da comunidade.',
-    categoria: 'Ação Social'
+    categoria: 'Ação Social',
+    imagem: 'combate-fome.jpg'
   },
   {
     titulo: 'Verde Urbano',
     descricao: 'Plantação de hortas comunitárias e oficinas de sustentabilidade ambiental.',
-    categoria: 'Meio Ambiente'
+    categoria: 'Meio Ambiente',
+    imagem: 'voluntarios-acao.jpg'
   }
 ];
 
@@ -57,11 +60,11 @@ function renderContent(path) {
   const appDiv = document.getElementById('app');
   if (!appDiv) return;
 
-  // Normaliza o caminho removendo o nome do repositório /Teste se existir
-  let cleanPath = path.replace('/Teste', '');
+  // Normaliza o caminho removendo o nome do repositório /Teste (com ou sem barra no final)
+  let cleanPath = path.replace(/\/Teste\/?/, '/');
 
-  // Trata caminhos vazios ou raízes como início
-  if (cleanPath === '' || cleanPath === '/' || cleanPath === '/index.html') {
+  // Trata caminhos da raiz, início ou index.html
+  if (cleanPath === '' || cleanPath === '/' || cleanPath === '/index.html' || cleanPath.includes('inicio')) {
     appDiv.innerHTML = htmlInicio;
   } else if (cleanPath.includes('projetos')) {
     appDiv.innerHTML = htmlProjetos;
@@ -79,6 +82,7 @@ function renderizarProjetos() {
 
   container.innerHTML = projetosData.map(proj => `
     <article class="card-projeto">
+      <img src="${proj.imagem}" alt="${proj.titulo}" class="img-projeto">
       <span class="badge">${proj.categoria}</span>
       <h3>${proj.titulo}</h3>
       <p>${proj.descricao}</p>
