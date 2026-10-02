@@ -1,50 +1,82 @@
 // ==========================================
-// 1. DADOS E MAPEAMENTO DE ROTAS (SPA)
+// 1. CONTEÚDO E DADOS COMPLETOS DA PÁGINA
 // ==========================================
+
+const htmlInicio = `
+  <h1>Início</h1>
+  <p>Bem-vindo ao Portal da ONG Esperanza Viva. Juntos transformamos vidas!</p>
+  <div style="margin-top: 1.5rem;">
+    <p style="margin-bottom: 1rem;">
+      A nossa instituição dedica-se a promover a inclusão social, educação de qualidade e apoio a famílias em situação de vulnerabilidade. Acreditamos que a união da comunidade é a força transformadora para um futuro mais justo e sustentável.
+    </p>
+    <p>
+      Navegue pelos nossos projetos para conhecer as nossas causas ativas ou aceda à secção de cadastro para se tornar um voluntário ou doador!
+    </p>
+  </div>
+`;
+
 const projetosData = [
   {
     titulo: 'Educação para Todos',
-    descricao: 'Aulas de reforço escolar e alfabetização para crianças em situação de vulnerabilidade.',
+    descricao: 'Aulas de reforço escolar, alfabetização e apoio pedagógico contínuo para crianças e adolescentes em situação de vulnerabilidade social.',
     categoria: 'Educação',
     imagem: 'voluntarios-acao.jpg'
   },
   {
     titulo: 'Alimentando Esperanças',
-    descricao: 'Distribuição de refeições diárias e cestas básicas para famílias da comunidade.',
+    descricao: 'Distribuição diária de refeições nutritivas e cestas básicas mensais para famílias cadastradas na comunidade.',
     categoria: 'Ação Social',
     imagem: 'combate-fome.jpg'
   },
   {
     titulo: 'Verde Urbano',
-    descricao: 'Plantação de hortas comunitárias e oficinas de sustentabilidade ambiental.',
+    descricao: 'Criação de hortas comunitárias, oficinas de plantio urbano e ações de consciencialização e sustentabilidade ambiental.',
     categoria: 'Meio Ambiente',
     imagem: 'voluntarios-acao.jpg'
   }
 ];
 
-const htmlInicio = `
-  <h1>Início</h1>
-  <p>Bem-vindo ao Portal da ONG. Juntos transformamos vidas!</p>
-`;
-
 const htmlProjetos = `
   <h1>Projetos Ativos</h1>
-  <p>Conheça as nossas causas e saiba como ajudar:</p>
+  <p style="margin-bottom: 1.5rem;">Conheça em detalhe as nossas causas e saiba como a sua colaboração faz a diferença:</p>
   <div id="lista-projetos" class="grid-projetos"></div>
 `;
 
 const htmlCadastro = `
   <h1>Cadastro / Envolva-se</h1>
+  <p style="margin-bottom: 1.5rem;">Preencha o formulário abaixo para se juntar à nossa equipa de voluntários ou contribuir com os projetos da ONG.</p>
   <form id="form-cadastro">
     <div class="campo">
-      <label for="nome">Nome Completo:</label>
-      <input type="text" id="nome" required placeholder="Digite o seu nome">
+      <label for="nome">Nome Completo *</label>
+      <input type="text" id="nome" required placeholder="Digite o seu nome completo">
     </div>
+
     <div class="campo">
-      <label for="email">E-mail:</label>
-      <input type="email" id="email" required placeholder="seu@email.com">
+      <label for="email">E-mail *</label>
+      <input type="email" id="email" required placeholder="exemplo@email.com">
     </div>
-    <button type="submit" class="btn">Enviar Cadastro</button>
+
+    <div class="campo">
+      <label for="telefone">Telefone / WhatsApp</label>
+      <input type="tel" id="telefone" placeholder="(11) 99999-9999">
+    </div>
+
+    <div class="campo">
+      <label for="tipo-ajuda">Como deseja participar? *</label>
+      <select id="tipo-ajuda" required style="padding: var(--space-sm); border: 1px solid #ccc; border-radius: 4px;">
+        <option value="">Selecione uma opção...</option>
+        <option value="voluntario">Quero ser Voluntário</option>
+        <option value="doador">Quero realizar Doações</option>
+        <option value="parceiro">Quero ser Empresa Parceira</option>
+      </select>
+    </div>
+
+    <div class="campo">
+      <label for="mensagem">Mensagem / Disponibilidade</label>
+      <textarea id="mensagem" rows="4" placeholder="Conte-nos um pouco sobre a sua motivação ou horários disponíveis..." style="padding: var(--space-sm); border: 1px solid #ccc; border-radius: 4px; font-family: inherit;"></textarea>
+    </div>
+
+    <button type="submit" class="btn" style="margin-top: 1rem;">Enviar Cadastro</button>
   </form>
 `;
 
@@ -60,10 +92,9 @@ function renderContent(path) {
   const appDiv = document.getElementById('app');
   if (!appDiv) return;
 
-  // Normaliza o caminho removendo o nome do repositório /Teste (com ou sem barra no final)
+  // Normaliza o caminho do GitHub Pages (/Teste/ ou subrotas)
   let cleanPath = path.replace(/\/Teste\/?/, '/');
 
-  // Trata caminhos da raiz, início ou index.html
   if (cleanPath === '' || cleanPath === '/' || cleanPath === '/index.html' || cleanPath.includes('inicio')) {
     appDiv.innerHTML = htmlInicio;
   } else if (cleanPath.includes('projetos')) {
@@ -83,24 +114,15 @@ function renderizarProjetos() {
   container.innerHTML = projetosData.map(proj => `
     <article class="card-projeto">
       <img src="${proj.imagem}" alt="${proj.titulo}" class="img-projeto">
-      <span class="badge">${proj.categoria}</span>
-      <h3>${proj.titulo}</h3>
+      <span class="badge" style="margin-top: 0.5rem;">${proj.categoria}</span>
+      <h3 style="margin: 0.5rem 0;">${proj.titulo}</h3>
       <p>${proj.descricao}</p>
     </article>
   `).join('');
 }
 
 // ==========================================
-// 3. PERSISTÊNCIA DE DADOS (LOCALSTORAGE)
-// ==========================================
-function salvarNoLocalStorage(dados) {
-  const cadastrosAtuais = JSON.parse(localStorage.getItem('cadastros_ong')) || [];
-  cadastrosAtuais.push(dados);
-  localStorage.setItem('cadastros_ong', JSON.stringify(cadastrosAtuais));
-}
-
-// ==========================================
-// 4. EVENT DELEGATION E LISTENERS GLOBAIS
+// 3. EVENT LISTENERS E SALVAMENTO
 // ==========================================
 document.addEventListener('click', (e) => {
   if (e.target.matches('a[data-link]')) {
@@ -128,11 +150,18 @@ document.addEventListener('submit', (e) => {
       return;
     }
 
-    salvarNoLocalStorage({
+    const novosDados = {
       nome: nomeInput.value.trim(),
       email: emailInput.value.trim(),
+      telefone: document.getElementById('telefone')?.value || '',
+      tipoAjuda: document.getElementById('tipo-ajuda')?.value || '',
+      mensagem: document.getElementById('mensagem')?.value || '',
       data: new Date().toISOString()
-    });
+    };
+
+    const cadastrosAtuais = JSON.parse(localStorage.getItem('cadastros_ong')) || [];
+    cadastrosAtuais.push(novosDados);
+    localStorage.setItem('cadastros_ong', JSON.stringify(cadastrosAtuais));
 
     exibirAlerta('Sucesso!', 'O seu cadastro foi realizado e salvo com sucesso.', 'success');
     e.target.reset();
